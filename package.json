@@ -1,0 +1,59 @@
+{
+  "name": "grunt-yslow",
+  "description": "Set a threshold for page weight, page load, and analyse your webpage performance.",
+  "version": "0.0.1",
+  "homepage": "https://andyshora.com/performance.html",
+  "author": {
+    "name": "Andy Shora",
+    "url": "http://andyshora.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andyshora/grunt-yslow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andyshora/grunt-yslow/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/andyshora/grunt-yslow/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt-lib-phantomjs": "~0.3.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "difflet": "~0.2.3"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "keywords": [
+    "performance",
+    "yslow",
+    "page load",
+    "page weight"
+  ],
+  "contributors": [
+    {
+      "name": "Andy Shora",
+      "url": "http://andyshora.com/"
+    }
+  ],
+  "readme": "ERROR: No README.md file found!",
+  "readmeFilename": "README.md",
+  "_id": "grunt-yslow@0.0.1",
+  "dist": {
+    "shasum": "da13be01c818f2242d8560c5263970f0303050ab"
+  },
+  "_from": "node_modules/grunt-yslow/"
+}
