@@ -31,13 +31,13 @@
     "grunt-lib-phantomjs": "~0.3.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "difflet": "~0.2.3"
+    "grunt": "~0.4.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
   },
   "keywords": [
+    "gruntplugin",
     "performance",
     "yslow",
     "page load",
@@ -47,6 +47,14 @@
     {
       "name": "Andy Shora",
       "url": "http://andyshora.com/"
+    },
+    {
+      "name": "Marcel Duran",
+      "url": "http://marcelduran.com/"
+    },
+    {
+      "name": "Ariya Hidayat",
+      "url": "http://ariya.ofilabs.com/about"
     }
   ],
   "readme": "ERROR: No README.md file found!",
