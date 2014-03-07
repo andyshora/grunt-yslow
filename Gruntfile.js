@@ -1,5 +1,5 @@
 /*
- * grunt-contrib-jasmine
+ * grunt-yslow
  * http://gruntjs.com/
  *
  * Copyright (c) 2012 GruntJS Team

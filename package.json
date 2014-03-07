@@ -2,7 +2,7 @@
   "name": "grunt-yslow",
   "description": "Set a threshold for page weight, page load, and analyse your webpage performance.",
   "version": "0.0.1",
-  "homepage": "https://andyshora.com/performance.html",
+  "homepage": "https://andyshora.com/grunt-yslow.html",
   "author": {
     "name": "Andy Shora",
     "url": "http://andyshora.com/"
@@ -47,21 +47,7 @@
     {
       "name": "Andy Shora",
       "url": "http://andyshora.com/"
-    },
-    {
-      "name": "Marcel Duran",
-      "url": "http://marcelduran.com/"
-    },
-    {
-      "name": "Ariya Hidayat",
-      "url": "http://ariya.ofilabs.com/about"
     }
   ],
-  "readme": "ERROR: No README.md file found!",
-  "readmeFilename": "README.md",
-  "_id": "grunt-yslow@0.0.1",
-  "dist": {
-    "shasum": "da13be01c818f2242d8560c5263970f0303050ab"
-  },
-  "_from": "node_modules/grunt-yslow/"
+  "readmeFilename": "README.md"
 }
