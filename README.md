@@ -6,28 +6,31 @@ Grunt task for testing page performance using PhantomJS, a headless WebKit brows
 ## Getting Started
 
 Install this grunt plugin next to your project's [grunt.js gruntfile] with:
-`npm install grunt-yslow`
+`npm install grunt-yslow --save-dev`
 
 Then add this line to your project's `grunt.js` gruntfile:
 
 ```javascript
 grunt.loadNpmTasks('grunt-yslow');
 ```
+---
 
-## Config
-- jasmine
-  - pages
-  - src : The path to test
-  - thresholds : optional overrides, same format as global thresholds in options
-  - options
-  - thresholds : The global test thresholds which cause the task to pass/fail.
-    - weight : The maximum page weight allowed.
-    - speed : The maximum load time of the page allowed.
-    - score : The minimum [YSlow performance score] (http://yslow.org/ruleset-matrix/) (out of 100) required.
-    - requests : The maximum number of requests the page is allowed to send on load.
+##Config
+All config must be specified in your Gruntfile.js under the task name yslow.
 
+###Options
+- **thresholds** (object) - An object specifying the global thresholds to test against. These can be overriden by higher specificity against inside the files section below.
+    - **weight** (number) - The maximum page weight allowed (kb).
+    - **speed** (number) - The maximum load time of the page allowed (ms).
+    - **score** (number) - The minimum [YSlow performance score] (http://yslow.org/ruleset-matrix/) (out of 100) required.
+    - **requests** - The maximum number of requests the page is allowed to send on load.
+- **files** (object) - An array of objects, specifying a seperate page to test. Generally this is wrapped inside a named sub-task, such as the 'pages' task in the example below.
+    - **src** (string) - The absolute url to test.
+    - **thresholds** (object) - Any overrides to the global thresholds for this page.
+        
+---
 
-## Example grunt config
+## Example Grunt Task
 
 ```javascript
 yslow: {
