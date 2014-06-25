@@ -21,9 +21,17 @@ module.exports = function(grunt) {
 
   var _ = grunt.util._;
 
+  function fetchOption(namespace, option, options, defaults) {
+    if (Object.prototype.hasOwnProperty.call(options, namespace) && Object.prototype.hasOwnProperty.call(options[namespace], option)) {
+      return options[namespace][option]
+    } else if (Object.prototype.hasOwnProperty.call(defaults, namespace) && Object.prototype.hasOwnProperty.call(defaults[namespace], option)) {
+      return defaults[namespace][option];
+    } else {
+      return undefined;
+    }
+  }
 
-
-  grunt.registerMultiTask('yslow', 'Run jasmine specs headlessly through PhantomJS.', function() {
+  grunt.registerMultiTask('yslow', 'Run Yslow headlessly through PhantomJS.', function() {
 
     var urls = this.data.files;
     var testCount = urls.length;
@@ -55,15 +63,34 @@ module.exports = function(grunt) {
       var data = urls[i];
 
       // setup thresholds
-      var customThresholds = Object.prototype.hasOwnProperty.call(data, 'thresholds');
-      thresholdArr[i].thresholdWeight = customThresholds && Object.prototype.hasOwnProperty.call(data.thresholds, 'weight') ? data.thresholds.weight : options.thresholds.weight;
-      thresholdArr[i].thresholdRequests = customThresholds && Object.prototype.hasOwnProperty.call(data.thresholds, 'requests') ? data.thresholds.requests : options.thresholds.requests;
-      thresholdArr[i].thresholdScore = customThresholds && Object.prototype.hasOwnProperty.call(data.thresholds, 'score') ? data.thresholds.score : options.thresholds.score;
-      thresholdArr[i].thresholdSpeed = customThresholds && Object.prototype.hasOwnProperty.call(data.thresholds, 'speed') ? data.thresholds.speed : options.thresholds.speed;
-
+      thresholdArr[i].thresholdWeight = fetchOption('thresholds', 'weight', data, options);
+      thresholdArr[i].thresholdRequests = fetchOption('thresholds', 'requests', data, options);
+      thresholdArr[i].thresholdScore = fetchOption('thresholds', 'score', data, options);
+      thresholdArr[i].thresholdSpeed = fetchOption('thresholds', 'speed', data, options);
 
       // creates a seperate scope for child variable
-      var cmd = 'phantomjs node_modules/grunt-yslow/tasks/lib/yslow.js --info basic ' + url;
+      var cmd = 'phantomjs node_modules/grunt-yslow/tasks/lib/yslow.js --info basic';
+
+      // Add any custom parameters
+      var userAgent = fetchOption('yslowOptions', 'userAgent', data, options);
+      var cdns = fetchOption('yslowOptions', 'cdns', data, options);
+      var viewport = fetchOption('yslowOptions', 'viewport', data, options);
+      var headers = fetchOption('yslowOptions', 'headers', data, options);
+
+      if (userAgent) {
+        cmd += ' --ua "' + userAgent +'"';
+      }
+      if (cdns) {
+        cmd += ' --cdns "' + cdns.join(',') +'"';
+      }
+      if (viewport) {
+        cmd += ' --viewport "' + viewport + '"';
+      }
+      if (headers) {
+        cmd += " --headers '" + JSON.stringify(headers) + "'";
+      }
+      cmd += ' ' + url;
+
       var child = childProcess.exec(cmd, [], function (err, stdout, stderr) {
           // console.log('inside, cmd', cmd, url);
 
@@ -71,7 +98,7 @@ module.exports = function(grunt) {
 
           var str = '';
 
-          str = logBuffer(str, _checkResult(thresholdArr[i].thresholdRequests >= results.r, thresholdArr[i].thresholdRequests + 'requests', 'Requests: ' + results.r));
+          str = logBuffer(str, _checkResult(thresholdArr[i].thresholdRequests >= results.r, thresholdArr[i].thresholdRequests + ' requests', 'Requests: ' + results.r));
           str = logBuffer(str, _checkResult(thresholdArr[i].thresholdScore <= results.o, thresholdArr[i].thresholdScore, 'YSlow score: ' + results.o + '/100'));
           str = logBuffer(str, _checkResult(thresholdArr[i].thresholdSpeed >= results.lt, thresholdArr[i].thresholdSpeed + 'ms', 'Page load time: ' + results.lt + 'ms'));
           str = logBuffer(str, _checkResult(thresholdArr[i].thresholdWeight >= (results.w/1000), thresholdArr[i].thresholdWeight + 'kb', 'Page weight: ' + (results.w/1000) + 'kb'));
