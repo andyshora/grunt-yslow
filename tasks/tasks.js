@@ -92,7 +92,6 @@ module.exports = function(grunt) {
       cmd += ' ' + url;
 
       var child = childProcess.exec(cmd, [], function (err, stdout, stderr) {
-          // console.log('inside, cmd', cmd, url);
 
           var results = JSON.parse(stdout);
 
@@ -120,6 +119,7 @@ module.exports = function(grunt) {
 
             grunt.log.ok(str);
           }
+          done();
 
       });
     };
