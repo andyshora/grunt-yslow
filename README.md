@@ -13,6 +13,11 @@ Then add this line to your project's `grunt.js` gruntfile:
 ```javascript
 grunt.loadNpmTasks('grunt-yslow');
 ```
+
+Also make sure that `phantomjs` is in the `$PATH`.  You can add
+`./node_modules/grunt-yslow/node_modules/grunt-lib-phantomjs/node_modules/phantomjs` or
+do a `$ npm install --global phantomjs`
+
 ---
 
 ##Config
