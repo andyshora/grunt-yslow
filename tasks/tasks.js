@@ -70,7 +70,7 @@ module.exports = function(grunt) {
       thresholdArr[i].thresholdSpeed = fetchOption('thresholds', 'speed', data, options);
 
       // creates a seperate scope for child variable
-      var cmd = phantomJsPath + ' node_modules/grunt-yslow/tasks/lib/yslow.js --info basic ' + url;
+      var cmd = phantomJsPath + ' node_modules/grunt-yslow/tasks/lib/yslow.js --info basic ';
 
       // Add any custom parameters
       var userAgent = fetchOption('yslowOptions', 'userAgent', data, options);
