@@ -16,7 +16,6 @@ module.exports = function(grunt) {
 
   // npm lib
   var phantomjs = require('grunt-lib-phantomjs').init(grunt);
-  var phantomJsPath = require('phantomjs').path;
 
   var childProcess = require('child_process');
 
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
       thresholdArr[i].thresholdSpeed = fetchOption('thresholds', 'speed', data, options);
 
       // creates a seperate scope for child variable
-      var cmd = phantomJsPath + ' node_modules/grunt-yslow/tasks/lib/yslow.js --info basic';
+      var cmd = 'phantomjs node_modules/grunt-yslow/tasks/lib/yslow.js --info basic';
 
       // Add any custom parameters
       var userAgent = fetchOption('yslowOptions', 'userAgent', data, options);
