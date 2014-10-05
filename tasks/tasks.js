@@ -68,8 +68,26 @@ module.exports = function(grunt) {
       thresholdArr[i].thresholdScore = fetchOption('thresholds', 'score', data, options);
       thresholdArr[i].thresholdSpeed = fetchOption('thresholds', 'speed', data, options);
 
+      // get phantomjs binary, or depend on a global(/path) install if it can't be found
+      var phantom, cmd;
+
+      try {
+        // Look up first
+        phantom = require('phantomjs');
+        cmd = phantom.path;
+      } catch (e) {
+        try {
+          // Look down if that fails
+          phantom = require(path.join(__dirname, '..', 'node_modules', 'grunt-lib-phantomjs', 'node_modules', 'phantomjs'));
+          cmd = phantom.path;
+        } catch (e) {
+          // This should never happen since 'grunt-lib-phantomjs' would have enforced one of the above
+          cmd = 'phantomjs';
+        }
+      }
+      
       // creates a seperate scope for child variable
-      var cmd = 'phantomjs node_modules/grunt-yslow/tasks/lib/yslow.js --info basic';
+      cmd += ' node_modules/grunt-yslow/tasks/lib/yslow.js --info basic';
 
       // Add any custom parameters
       var userAgent = fetchOption('yslowOptions', 'userAgent', data, options);
