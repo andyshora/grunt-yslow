@@ -1,7 +1,7 @@
 {
   "name": "grunt-yslow",
   "description": "Set a threshold for page weight, page load, and analyse your webpage performance.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "http://andyshora.com/grunt-yslow.html",
   "author": {
     "name": "Andy Shora",
