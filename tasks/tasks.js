@@ -131,6 +131,8 @@ module.exports = function(grunt) {
 
             grunt.log.error(str);
 
+            done(false);
+
           } else {
             grunt.log.ok('\n\n-----------------------------------------------' +
               '\nTest ' + (i+1) + ': ' + urls[i].src +
