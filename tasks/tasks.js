@@ -35,6 +35,7 @@ module.exports = function(grunt) {
 
     var urls = this.data.files;
     var testCount = urls.length;
+    var testsRun = 0;
     var logBufferArr = [], thresholdArr = [];
     var options = this.options({});
 
@@ -137,7 +138,10 @@ module.exports = function(grunt) {
 
             grunt.log.ok(str);
           }
-          done();
+          testsRun++;
+          if (testsRun >= testCount) {
+            done();
+          }
 
       });
     };
