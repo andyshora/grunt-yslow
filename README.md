@@ -20,10 +20,10 @@ do a `$ npm install --global phantomjs`
 
 ---
 
-##Config
+## Config
 All config must be specified in your Gruntfile.js under the task name yslow.
 
-###Options
+### Options
 - **thresholds** (object) - An object specifying the global thresholds to test against. These can be overridden by higher specificity against inside the files section below.
     - **weight** (number) - The maximum page weight allowed (kb).
     - **speed** (number) - The maximum load time of the page allowed (ms).
